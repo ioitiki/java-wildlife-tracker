@@ -9,8 +9,10 @@ import java.sql.Timestamp;
 
 public class NotEndangeredAnimal {
 
-  public NotEndangeredAnimal() {
+  public static final Stringv ENDANGERED = "Not Endangered";
 
+  public NotEndangeredAnimal(int animal_id, ) {
+    
   }
 
 }

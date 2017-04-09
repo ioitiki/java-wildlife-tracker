@@ -7,10 +7,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.sql.Timestamp;
 
-public class AnimalSighting {
+public class AnimalSighting extends Animal {
+  private int sighting_id;
+  private String ranger_name;
 
   public AnimalSighting() {
 
+  }
+
+  public int getSightingId() {
+    
   }
 
 }
