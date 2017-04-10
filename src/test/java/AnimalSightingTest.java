@@ -21,8 +21,19 @@ public class AnimalSightingTest {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
     testEndangeredAnimal.save();
     Timestamp testTimestamp = new Timestamp(1, 2, 3, 4, 5, 6, 7);
-    AnimalSighting testSighting = new AnimalSighting(testEndangeredAnimal.getAnimalId(), testRanger.getRangerId(), 2, testTimestamp, testEndangeredAnimal.getDescription());
+    AnimalSighting testSighting = new AnimalSighting(testEndangeredAnimal.getAnimalId(), testRanger.getRangerId(), 2, testTimestamp);
     assertEquals(true, testSighting instanceof AnimalSighting);
+  }
+
+  @Test
+  public void sighting_instantiatesWithCorrectIsEndangered_true() {
+    Ranger testRanger = new Ranger("Rick", "test@email.com", "386-233-5467", 5248);
+    testRanger.save();
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    testEndangeredAnimal.save();
+    Timestamp testTimestamp = new Timestamp(1, 2, 3, 4, 5, 6, 7);
+    AnimalSighting testSighting = new AnimalSighting(testEndangeredAnimal.getAnimalId(), testRanger.getRangerId(), 2, testTimestamp);
+    assertEquals("Endangered", testSighting.getIsEndangered());
   }
 
 }

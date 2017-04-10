@@ -32,21 +32,9 @@ public abstract class Animal {
     return name;
   }
 
-  public String getIsEndangered() {
-    return is_endangered;
-  }
-
   public String getDescription() {
     return description;
   }
-
-  // public Timestamp getLastSightingTimestamp() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM sightings ORDER BY sighting_date DESC LIMIT 1 WHERE ";
-  //     return con.createQuery(sql)
-  //       .executeAndFetch(Timestamp);
-  //   }
-  // }
 
   public String getHealth() {
     return health;
