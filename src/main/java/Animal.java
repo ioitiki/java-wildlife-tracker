@@ -1,24 +1,14 @@
 import org.sql2o.*;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.time.*;
-import java.text.*;
 
 public abstract class Animal implements DatabaseReqInterface {
   public int animal_id;
   public String name;
-  // public Timestamp last_sighting_timestamp;
-  // public String last_sighting;
   public String description;
   public String is_endangered;
   public String health;
   public String age;
-
-  // DateFormat.getDateTimeInstance().format(testTimestamp);
-
 
   public static final List<String> HEALTH_STATUSES = Arrays.asList("healthy", "okay", "ill");
   public static final List<String> AGE_TYPES = Arrays.asList("newborn", "young", "adult");
@@ -60,7 +50,6 @@ public abstract class Animal implements DatabaseReqInterface {
       String sql = "INSERT INTO animals (name, description, is_endangered, health, age) VALUES (:name, :description, :is_endangered, :health, :age);";
       this.animal_id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
-        // .addParameter("last_sighting", null)
         .addParameter("description", this.description)
         .addParameter("is_endangered", this.is_endangered)
         .addParameter("health", this.health)
