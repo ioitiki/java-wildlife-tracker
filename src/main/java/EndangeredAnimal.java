@@ -25,11 +25,11 @@ public class EndangeredAnimal extends Animal {
   }
 
   public String getHealth() {
-    return HEALTH_STATUSES.get(health);
+    return HEALTH_STATUSES.get(health - 1);
   }
 
   public String getAge() {
-    return AGE_TYPES.get(age);
+    return AGE_TYPES.get(age - 1);
   }
 
 
