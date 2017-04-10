@@ -7,12 +7,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.sql.Timestamp;
 
-public class NotEndangeredAnimal {
+public class NotEndangeredAnimal extends Animal {
 
-  public static final Stringv ENDANGERED = "Not Endangered";
+  public static final String ENDANGERED = "Not Endangered";
 
-  public NotEndangeredAnimal(int animal_id, ) {
-    
+  public NotEndangeredAnimal(String name, String description) {
+    is_endangered = ENDANGERED;
+    this.name = name;
+    this.description = description;
   }
 
 }

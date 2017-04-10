@@ -7,21 +7,21 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.sql.Timestamp;
 
-public class EndangeredAnimal extends Animal implements DatabaseReqInterface {
+public class EndangeredAnimal extends Animal {
   private int health;
   private int age;
 
   private static final String ENDANGERED = "Endangered";
-  public static final List<String> HEALTH_STATUSES = new ArrayList<String>("healthy", "okay", "ill");
-  public static final List<String> AGE_TYPES = new ArrayList<String>("newborn", "young", "adult");
+  private static final List<String> HEALTH_STATUSES = Arrays.asList("healthy", "okay", "ill");
+  private static final List<String> AGE_TYPES = Arrays.asList("newborn", "young", "adult");
 
-  public EndangeredAnimal(String name, String is_endangered, int health_number, int age_number, String description, String location) {
+
+  public EndangeredAnimal(String name, int health_number, int age_number, String description) {
     this.name = name;
     is_endangered = ENDANGERED;
-    health = health_number;
-    age = age_number;
+    this.health = health_number;
+    this.age = age_number;
     this.description = description;
-    this.location = getLocation(location);
   }
 
   public String getHealth() {
@@ -31,7 +31,6 @@ public class EndangeredAnimal extends Animal implements DatabaseReqInterface {
   public String getAge() {
     return AGE_TYPES.get(age);
   }
-
 
 
 }
