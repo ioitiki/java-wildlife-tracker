@@ -21,7 +21,7 @@ _Example text for the description of the project_
 * _Run the command 'gradle run'_
 * _Open browser and go to localhost:4567_
 * _CREATE TABLE animals (animal_id serial PRIMARY KEY, name varchar, last_sighting timestamp, description text, is_endangered varchar, health varchar, age varchar);_
-* _CREATE TABLE sightings (sighting_id serial PRIMARY KEY, animal_id int, ranger_name varchar, location varchar, sighting_date timestamp, description text, is_endangered varchar);_
+* _CREATE TABLE sightings (sighting_id serial PRIMARY KEY, animal_id int, ranger_id int, location varchar, sighting_date timestamp, description text, is_endangered varchar);_
 * _CREATE TABLE rangers (ranger_id serial PRIMARY KEY, name varchar, email varchar, phone_number varchar, badge_number int);_
 
 _

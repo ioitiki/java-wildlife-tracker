@@ -10,15 +10,15 @@ import java.sql.Timestamp;
 public class AnimalSighting extends Animal {
   private int sighting_id;
   private int ranger_id;
-  private int location;
+  private String location;
   private Timestamp sighting_date;
 
   private static final List<String> LOCATION_ZONES = Arrays.asList("NE Quadrant", "SE Quadrant", "NW Quadrant", "SW Quadrant");
 
 
-  public AnimalSighting(int ranger_id, int location, Timestamp sighting_date, String description) {
+  public AnimalSighting(int animal_id, int ranger_id, int location_number, Timestamp sighting_date, String description) {
     this.ranger_id = ranger_id;
-    this.location = location;
+    this.location = LOCATION_ZONES.get(location_number - 1);
     this.sighting_date = sighting_date;
     this.description = description;
   }
@@ -31,26 +31,60 @@ public class AnimalSighting extends Animal {
     return ranger_id;
   }
 
-  // public String getRangerName() {
-  //   return Ranger.find(this.ranger_id).getTitle();
-  // }
-
-  public String getLocation() {
-    return LOCATION_ZONES.get(location);
+  public String getRangerName() {
+    return Ranger.find(this.ranger_id).getName();
   }
 
-  // public void save() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "INSERT INTO sightings (animal_id, ranger_name, location, is_endangered) VALUES (:animal_id, :ranger_name, :location, :is_endangered);";
-  //     this.id = (int) con.createQuery(sql, true)
-  //       .addParameter("animal_id", this.animal_id)
-  //       .addParameter("ranger_name", this.ranger_name)
-  //       .addParameter("location", this.location)
-  //       .addParameter("is_endangered", this.is_endangered)
-  //       .addParameter("animal_id", this.animal_id)
-  //       .executeUpdate()
-  //       .getKey();
-  //   }
-  // }
+  public String getLocation() {
+    return location;
+  }
+
+  @Override
+  public boolean equals(Object otherAnimalSighting) {
+    if(!(otherAnimalSighting instanceof AnimalSighting)) {
+      return false;
+    } else {
+      AnimalSighting newAnimalSighting = (AnimalSighting) otherAnimalSighting;
+      return this.getAnimalId() == newAnimalSighting.getAnimalId() &&
+             this.getLocation().equals(newAnimalSighting.getLocation()) &&
+             this.getRangerId() == newAnimalSighting.getRangerId();
+    }
+  }
+
+  @Override
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO sightings (animal_id, ranger_id, location, sighting_date, description, is_endangered) VALUES (:animal_id, :ranger_id, :location, :sighting_date, :description, :is_endangered);";
+      this.sighting_id = (int) con.createQuery(sql, true)
+        .addParameter("animal_id", this.animal_id)
+        .addParameter("ranger_id", this.ranger_id)
+        .addParameter("location", this.location)
+        .addParameter("sighting_date", this.sighting_date)
+        .addParameter("description", this.description)
+        .addParameter("is_endangered", this.is_endangered)
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
+  public static List<AnimalSighting> all() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sightings;";
+      return con.createQuery(sql)
+        .throwOnMappingFailure(false)
+        .executeAndFetch(AnimalSighting.class);
+    }
+  }
+
+  public static AnimalSighting find(int sighting_id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sightings WHERE sighting_id=:sighting_id;";
+      return con.createQuery(sql)
+        .addParameter("sighting_id", sighting_id)
+        .executeAndFetchFirst(AnimalSighting.class);
+    } catch (IndexOutOfBoundsException exception) {
+      return null;
+    }
+  }
 
 }

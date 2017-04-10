@@ -93,8 +93,9 @@ public abstract class Animal {
 
   public List<AnimalSighting> getAnimalSightings() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM sightings;";
+      String sql = "SELECT * FROM sightings WHERE animal_id=:animal_id;";
         return con.createQuery(sql)
+          .addParameter("animal_id", animal_id)
           .executeAndFetch(AnimalSighting.class);
     }
   }
