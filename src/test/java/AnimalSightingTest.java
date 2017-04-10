@@ -36,4 +36,15 @@ public class AnimalSightingTest {
     assertEquals("Endangered", testSighting.getIsEndangered());
   }
 
+  @Test
+  public void formatTimestamp_returnFormattedStringGivenATimestamp_string() {
+    Ranger testRanger = new Ranger("Rick", "test@email.com", "386-233-5467", 5248);
+    testRanger.save();
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    testEndangeredAnimal.save();
+    Timestamp testTimestamp = new Timestamp(1, 2, 3, 4, 5, 6, 7);
+    AnimalSighting testSighting = new AnimalSighting(testEndangeredAnimal.getAnimalId(), testRanger.getRangerId(), 2, testTimestamp);
+    assertEquals("Mar 3, 1901 4:05:06 AM", AnimalSighting.formatTimestamp(testSighting.getSightingDate()));
+  }
+
 }

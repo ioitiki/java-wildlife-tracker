@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 
 public class AnimalSighting extends Animal implements DatabaseReqInterface {
   private int sighting_id;
@@ -23,6 +24,14 @@ public class AnimalSighting extends Animal implements DatabaseReqInterface {
 
   public int getSightingId() {
     return sighting_id;
+  }
+
+  public Timestamp getSightingDate() {
+    return sighting_date;
+  }
+
+  public static String formatTimestamp(Timestamp time) {
+    return DateFormat.getDateTimeInstance().format(time);
   }
 
   public int getRangerId() {
