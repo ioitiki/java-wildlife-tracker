@@ -7,7 +7,7 @@ import java.util.Date;
 import java.time.*;
 import java.text.*;
 
-public abstract class Animal {
+public abstract class Animal implements DatabaseReqInterface {
   public int animal_id;
   public String name;
   // public Timestamp last_sighting_timestamp;

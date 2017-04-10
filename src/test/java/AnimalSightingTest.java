@@ -15,7 +15,7 @@ public class AnimalSightingTest {
   public DatabaseRule database = new DatabaseRule();
 
   @Test
-  public void sighting_instantiatesCorrectly_true() {
+  public void animalSighting_instantiatesCorrectly_true() {
     Ranger testRanger = new Ranger("Rick", "test@email.com", "386-233-5467", 5248);
     testRanger.save();
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
@@ -26,7 +26,7 @@ public class AnimalSightingTest {
   }
 
   @Test
-  public void sighting_instantiatesWithCorrectIsEndangered_true() {
+  public void animalSighting_instantiatesWithCorrectIsEndangered_true() {
     Ranger testRanger = new Ranger("Rick", "test@email.com", "386-233-5467", 5248);
     testRanger.save();
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");

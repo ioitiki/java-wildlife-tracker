@@ -7,7 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.sql.Timestamp;
 
-public class AnimalSighting extends Animal {
+public class AnimalSighting extends Animal implements DatabaseReqInterface {
   private int sighting_id;
   private int animal_id;
   private int ranger_id;
@@ -67,6 +67,7 @@ public class AnimalSighting extends Animal {
     }
   }
 
+  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings (animal_id, ranger_id, location, sighting_date, is_endangered) VALUES (:animal_id, :ranger_id, :location, :sighting_date, :is_endangered);";

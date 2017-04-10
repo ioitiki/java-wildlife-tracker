@@ -7,7 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.sql.Timestamp;
 
-public class Ranger {
+public class Ranger implements DatabaseReqInterface {
   private int ranger_id;
   private String name;
   private String email;
