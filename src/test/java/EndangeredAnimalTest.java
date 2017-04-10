@@ -44,6 +44,53 @@ public class EndangeredAnimalTest {
     assertEquals("Brown with grey tail.", testEndangeredAnimal.getDescription());
   }
 
+  @Test
+  public void equals_returnsTrueIfNameAndDescriptionAreSame_true() {
+    EndangeredAnimal testEndangeredAnimal1 = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    EndangeredAnimal testEndangeredAnimal2 = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    assertTrue(testEndangeredAnimal1.equals(testEndangeredAnimal2));
+  }
 
+  @Test
+  public void save_successfullyAddsEndangeredAnimalToDatabase_List() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    testEndangeredAnimal.save();
+    assertTrue(EndangeredAnimal.all().get(0).equals(testEndangeredAnimal));
+  }
+
+  @Test
+  public void save_assignsAnimalIdToEndangeredAnimal() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    testEndangeredAnimal.save();
+    EndangeredAnimal savedEndangeredAnimal = EndangeredAnimal.all().get(0);
+    assertEquals(savedEndangeredAnimal.getAnimalId(), testEndangeredAnimal.getAnimalId());
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfEndangeredAnimal_true() {
+    EndangeredAnimal testEndangeredAnimal1 = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    testEndangeredAnimal1.save();
+    EndangeredAnimal testEndangeredAnimal2 = new EndangeredAnimal("Bear", 2, 1, "Small with some brown hair.");
+    testEndangeredAnimal2.save();
+    assertEquals(true, EndangeredAnimal.all().get(0).equals(testEndangeredAnimal1));
+    assertEquals(true, EndangeredAnimal.all().get(1).equals(testEndangeredAnimal2));
+  }
+
+  @Test
+  public void find_returnsEndangeredAnimalWithSameId_secondEndangeredAnimal() {
+    EndangeredAnimal testEndangeredAnimal1 = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    testEndangeredAnimal1.save();
+    EndangeredAnimal testEndangeredAnimal2 = new EndangeredAnimal("Bear", 2, 1, "Small with some brown hair.");
+    testEndangeredAnimal2.save();
+    assertEquals(EndangeredAnimal.find(testEndangeredAnimal2.getAnimalId()), testEndangeredAnimal2);
+  }
+
+  @Test
+  public void delete_deletesEndangeredAnimalFromDatabase_0() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", 1, 2, "Brown with grey tail.");
+    testEndangeredAnimal.save();
+    testEndangeredAnimal.delete();
+    assertEquals(0, EndangeredAnimal.all().size());
+  }
 
 }

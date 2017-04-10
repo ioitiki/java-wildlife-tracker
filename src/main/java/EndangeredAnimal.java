@@ -8,28 +8,34 @@ import java.util.TimerTask;
 import java.sql.Timestamp;
 
 public class EndangeredAnimal extends Animal {
-  private int health;
-  private int age;
 
-  private static final String ENDANGERED = "Endangered";
-  private static final List<String> HEALTH_STATUSES = Arrays.asList("healthy", "okay", "ill");
-  private static final List<String> AGE_TYPES = Arrays.asList("newborn", "young", "adult");
-
+  public static final String ENDANGERED = "Endangered";
 
   public EndangeredAnimal(String name, int health_number, int age_number, String description) {
     this.name = name;
     is_endangered = ENDANGERED;
-    this.health = health_number;
-    this.age = age_number;
+    this.health = HEALTH_STATUSES.get(health_number - 1);
+    this.age = AGE_TYPES.get(age_number - 1);
     this.description = description;
   }
 
-  public String getHealth() {
-    return HEALTH_STATUSES.get(health - 1);
+  public static List<EndangeredAnimal> all() {
+    String sql = "SELECT * FROM animals where is_endangered='Endangered';";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .throwOnMappingFailure(false)
+        .executeAndFetch(EndangeredAnimal.class);
+    }
   }
 
-  public String getAge() {
-    return AGE_TYPES.get(age - 1);
+  public static EndangeredAnimal find(int animal_id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals where animal_id=:animal_id";
+      return con.createQuery(sql)
+        .addParameter("animal_id", animal_id)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(EndangeredAnimal.class);
+    }
   }
 
 
