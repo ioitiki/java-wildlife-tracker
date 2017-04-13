@@ -1,3 +1,45 @@
-<!--index.vtl-->
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="center-text">Wildlife Tracker</h1>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2">
+        <div class="table-list well">
+          <h2>Recent Sightings</h2>
+          #if($recentSightings.size() > 0)
+            #if($recentSightings.size() < 5)
+              #set($end = $recentSightings.size())
+              #set($end = $end - 1)
+            #else
+              #set($end = 4)
+            #end
+            <ul>
+            #foreach($i in [0..$end])
+              <li class="list-item">$recentSightings.get($i).getSightingDate()</li>
+            #end
+            </ul>
+          #end
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="table-list well">
+          <h2>Top Rangers<h2>
+          #if($rangers.size() > 0)
+            #if($rangers.size() < 5)
+              #set($end = $rangers.size())
+              #set($end = $end - 1)
+            #else
+              #set($end = 4)
+            #end
+            <ul>
+              #foreach($i in [0..$end])
+                <li class="list-item">$rangers.get($i).getName()</li>
+              #end
+            </ul>
+        #end
+        </div>
+      </div>
+    </div>
 
-<!--index.vtl-->
+
+  </div>
+</div>

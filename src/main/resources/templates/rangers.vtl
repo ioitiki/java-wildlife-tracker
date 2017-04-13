@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="table-list well">
+      <h1>Rangers</h1>
+      <br>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Badge Number</th>
+        </tr>
+        #foreach($ranger in $rangers)
+        <tr>
+          <td>$ranger.getName()</td>
+          <td>$ranger.getEmail()</td>
+          <td>$ranger.getPhoneNumber()</td>
+          <td>$ranger.getBadgeNumber()</td>
+        </tr>
+        #end
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Add a Ranger</h2>
+    <div class="well">
+      <form action="/rangers" method="post">
+        <label for="name">Enter Name:</label>
+        <input class="form-control" type="text" name="name" id="name" required>
+        <label for="email">Enter Email:</label>
+        <input class="form-control" type="text" name="email" id="email" required>
+        <label for="phone-number">Enter Phone Number:</label>
+        <input class="form-control" type="text" name="phone-number" id="phone-number" required>
+        <label for="badge-number">Enter Bade Number:</label>
+        <input class="form-control" type="text" name="badge-number" id="badge-number" required>
+        <button type="submit" class="btn btn-primary">Add Ranger</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -10,10 +10,6 @@ public abstract class Animal implements DatabaseReqInterface {
   public String health;
   public String age;
 
-  public static final List<String> HEALTH_STATUSES = Arrays.asList("healthy", "okay", "ill");
-  public static final List<String> AGE_TYPES = Arrays.asList("newborn", "young", "adult");
-
-
   public int getAnimalId() {
     return animal_id;
   }
@@ -32,6 +28,10 @@ public abstract class Animal implements DatabaseReqInterface {
 
   public String getAge() {
     return age;
+  }
+
+  public String getIsEndangered() {
+    return is_endangered;
   }
 
   @Override
@@ -61,20 +61,25 @@ public abstract class Animal implements DatabaseReqInterface {
 
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "DELETE FROM animals WHERE animal_id=:animal_id;";
+      String sql = "DELETE FROM animals WHERE animal_id = :animal_id;";
       con.createQuery(sql)
         .addParameter("animal_id", animal_id)
         .executeUpdate();
     }
   }
 
-  public List<AnimalSighting> getAnimalSightings() {
+  public void update(String name, String description, String health, String age) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM sightings WHERE animal_id=:animal_id;";
-        return con.createQuery(sql)
-          .addParameter("animal_id", animal_id)
-          .executeAndFetch(AnimalSighting.class);
+      String sql = "UPDATE animals SET (name, description, health, age) = (:name, :description, :is_endangered, :health, :age) WHERE animal_id = :animal_id;";
+      con.createQuery(sql)
+        .addParameter("animal_id", this.animal_id)
+        .addParameter("name", name)
+        .addParameter("description", description)
+        .addParameter("health", health)
+        .addParameter("age", age)
+        .executeUpdate();
     }
   }
+
 
 }

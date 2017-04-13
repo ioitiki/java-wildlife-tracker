@@ -7,14 +7,16 @@ public class NotEndangeredAnimal extends Animal {
 
   public static final String ENDANGERED = "Not Endangered";
 
-  public NotEndangeredAnimal(String name, String description) {
+  public NotEndangeredAnimal(String name, String description, String health, String age) {
     is_endangered = ENDANGERED;
     this.name = name;
     this.description = description;
+    this.health = health;
+    this.age = age;
   }
 
   public static List<NotEndangeredAnimal> all() {
-    String sql = "SELECT * FROM animals where is_endangered='Not Endangered';";
+    String sql = "SELECT * FROM animals where is_endangered = 'Not Endangered';";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
         .throwOnMappingFailure(false)

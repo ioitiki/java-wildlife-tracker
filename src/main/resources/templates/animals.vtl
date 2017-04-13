@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="table-list well">
+      <h1>Animals</h1>
+      <br>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th>Name</th>
+          <th>description</th>
+          <th>Health Status</th>
+          <th>Approx. Age</th>
+          <th>Endangered</th>
+        </tr>
+        #foreach($animal in $animals)
+        <tr>
+          <td>$animal.getName()</td>
+          <td>$animal.getDescription()</td>
+          <td>$animal.getHealth()</td>
+          <td>$animal.getAge()</td>
+          <td>$animal.getIsEndangered()</td>
+        </tr>
+        #end
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Add an Endangered Animal</h2>
+    <div class="well">
+      <form action="/endangered-animals" method="post">
+        <div class="form-group">
+          <label for="name">Enter Animal Name:</label>
+          <input class="form-control" type="text" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Enter Description:</label>
+          <input class="form-control" type="text" name="description" id="description" required>
+        </div>
+        <div class="form-group">
+          <label for="health">Select Health Status:</label>
+          <select class="form-control" name="health">
+            <option value="Healthy">Healthy</option>
+            <option value="Okay">Okay</option>
+            <option value="Ill">Ill</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Select Approx. Age:</label>
+          <select class="form-control" name="age">
+            <option value="New Born">New Born</option>
+            <option value="Young">Young</option>
+            <option value="Adult">Adult</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Animal</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Add a Non-endangered Animal</h2>
+    <div class="well">
+      <form action="/animals" method="post">
+        <div class="form-group">
+          <label for="name">Enter Animal Name:</label>
+          <input class="form-control" type="text" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Enter Description:</label>
+          <input class="form-control" type="text" name="description" id="description" required>
+        </div>
+        <div class="form-group">
+          <label for="health">Select Health Status:</label>
+          <select class="form-control" name="health">
+            <option value="Healthy">Healthy</option>
+            <option value="Okay">Okay</option>
+            <option value="Ill">Ill</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Select Approx. Age:</label>
+          <select class="form-control" name="age">
+            <option value="New Born">New Born</option>
+            <option value="Young">Young</option>
+            <option value="Adult">Adult</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Animal</button>
+      </form>
+    </div>
+  </div>
+</div>

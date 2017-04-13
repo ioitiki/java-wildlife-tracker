@@ -63,7 +63,7 @@ public class Ranger implements DatabaseReqInterface {
   }
 
   public static List<Ranger> all() {
-    String sql = "SELECT * FROM rangers where is_endangered='Endangered';";
+    String sql = "SELECT * FROM rangers;";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
         .throwOnMappingFailure(false)

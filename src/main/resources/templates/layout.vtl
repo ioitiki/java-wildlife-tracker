@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html>
+<html>
   <head>
-    <title>wildlife-tracker</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>movie-review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="/app.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="/js/scripts.js"></script>
+    <script type="text/javascript" src="/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script src="/js/bootstrap-select.js"></script>
   </head>
   <body>
-    <!-- begin inner template-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="/"><img src="/images/icon.png" id="home-icon" /></a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/rangers">Rangers</a></li>
+          <li><a href="/animals">Animals</a></li>
+          <li><a href="/sightings">Sightings</a></li>
+        </ul>
+        <form action="/search" class="navbar-form navbar-right" method="post">
+          <div class="form-group">
+            <input required name="searchInput" type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="search-btn btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+      </div>
+    </nav>
     <div class="container">
       #parse( $template )
     </div>
-    <!-- end inner template-->
   </body>
 </html>
