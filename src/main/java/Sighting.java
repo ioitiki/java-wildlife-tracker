@@ -5,7 +5,7 @@ import java.util.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 
-public class Sighting extends Animal implements DatabaseReqInterface {
+public class Sighting extends DatabaseReqInterface {
   private int sighting_id;
   private int animal_id;
   private int ranger_id;
